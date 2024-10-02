@@ -9,7 +9,6 @@
   users.users.admin = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable 'sudo' for the user.
-    initialPassword = "changeme";
   };
 
   # Enable networking

@@ -5,6 +5,18 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+# Define EFI boot partition
+  fileSystems."/boot" = {
+    device = "/dev/sda1";    # Boot partition
+    fsType = "vfat";         # Assuming it's a FAT32 EFI partition
+  };
+
+  # Define root partition
+  fileSystems."/" = {
+    device = "/dev/sda2";    # Root partition
+    fsType = "ext4";         # Assuming ext4, change if needed
+  };
+
   # Define the user
   users.users.admin = {
     isNormalUser = true;
@@ -13,11 +25,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Enable Bluetooth
   hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
 
   # Enable the X11 windowing system
   services.xserver = {
